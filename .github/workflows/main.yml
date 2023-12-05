@@ -16,7 +16,7 @@ jobs:
     - name: Build and Test
       run: |
         docker-compose build
-        docker-compose run web python manage.py test
+        docker-compose run web python pytest
 
     - name: Push to Docker Hub
       run: |
