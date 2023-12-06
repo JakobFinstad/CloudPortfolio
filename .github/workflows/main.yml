@@ -38,6 +38,19 @@ jobs:
       with:
         app-name: 'CloudPortAppService'
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+
+    - name: Install Azure CLI
+      run: |
+        sudo apt-get update
+        sudo apt-get install azure-cli
+
+    - name: Install PowerShell Core and Azure PowerShell Module
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y powershell
+        pwsh -Command "Install-Module -Name Az -Force -Scope CurrentUser"
+      
+
       
     - name: Configure Azure CLI
       uses: azure/login@v1
