@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+permissions:
+      id-token: write
+      contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -46,7 +50,8 @@ jobs:
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         enable-AzPSSession: true
 
-    - run: |
+    - name: Terraform
+      run: |
         terraform init
         terraform apply
       
