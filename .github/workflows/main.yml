@@ -52,7 +52,7 @@ jobs:
 
     - name: Terraform
       run: |
-        terraform init
+        terraform init -autp-approve
         terraform apply -auto-approve
       
     
