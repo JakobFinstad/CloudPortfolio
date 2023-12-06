@@ -41,4 +41,5 @@ jobs:
       
     - name: Terraform apply
       run: |
+        terraform init
         terraform apply
