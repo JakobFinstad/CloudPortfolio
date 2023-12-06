@@ -55,7 +55,7 @@ jobs:
     
     - name: Terraform
       run: |
-        terraform init -backen-config=${{secrets.AZURE_STATE_KEY}}
+        terraform init -backend-config=${{secrets.AZURE_STATE_KEY}}
         terraform apply -auto-approve
       
     
