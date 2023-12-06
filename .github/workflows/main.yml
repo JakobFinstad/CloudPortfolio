@@ -55,7 +55,7 @@ jobs:
     
     - name: Terraform
       run: |
-        terraform init -backend-config="foo"
+        terraform init -backend-config=backend.hcl
         terraform apply -auto-approve
       
     
