@@ -7,6 +7,10 @@ resource "github_actions_secret" "sub_id" {
 
 resource "github_actions_secret" "tenant_id" {
   repository = "CloudPortfolio"
+  secret_name = "AZURE_TENANT_ID"
+}
+resource "github_actions_secret" "client_id" {
+  repository = "CloudPortfolio"
   secret_name = "AZURE_CLIENT_ID"
 }
 
@@ -24,6 +28,7 @@ terraform {
     key                  = "prod.terraform.tfstate"
     use_oidc             = true
     subscription_id      = "sub_id"
+    client_id            = "client_id"
     tenant_id            = "tenant_id"
   }
 
