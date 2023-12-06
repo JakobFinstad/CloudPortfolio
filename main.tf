@@ -1,4 +1,15 @@
 # main.tf
+
+resource "github_actions_secret" "sub_id" {
+  repository = "CloudPortfolio"
+  secret_name = "AZURE_SUBSCRIPTION_ID"
+}
+
+resource "github_actions_secret" "tenant_id" {
+  repository = "CloudPortfolio"
+  secret_name = "AZURE_CLIENT_ID"
+}
+
 terraform {
   required_providers {
     azurerm = {
@@ -7,16 +18,21 @@ terraform {
     }
   }
   backend "azurerm" {
-      resource_group_name  = "CloudPortfolio"
-      storage_account_name = "tfstateq1nmo"
-      container_name       = "tfstate"
-      key                  = "terraform.tfstate"
+    resource_group_name  = "CloudPortfolio"
+    storage_account_name = "tfstateq1nmo"
+    container_name       = "tfstate"
+    key                  = "prod.terraform.tfstate"
+    use_oidc             = true
+    subscription_id      = "sub_id"
+    tenant_id            = "tenant_id"
   }
 
 }
+
 provider "azurerm" {
   features{}
 }
+
 resource "random_string" "resource_code" {
   length  = 5
   special = false
