@@ -18,7 +18,7 @@ class TestApp(unittest.TestCase):
         # Ensure the Flask app is running and responds to requests
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual("Hello World!", response.data)
+        self.assertEqual(b'Hello World!', response.data)
 
 if __name__ == '__main__':
     unittest.main()
