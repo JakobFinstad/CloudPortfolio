@@ -52,20 +52,17 @@ jobs:
 
     - name: Set Terraform Backend Config
       run: |
-        echo "subscription_id = \"$SUB_ID\"" > backend.hcl
-        echo "tenant_id = \"$TENANT_ID\"" > backend.hcl
-        echo "client_id = \"$CLIENT_ID\"" > backend.hcl
-      env:
-        SUB_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
-        TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-        
+        echo "subscription_id = \"${{ secrets.AZURE_SUBSCRIPTION_ID }}\"" > backend.hcl
+        echo "tenant_id       = \"${{ secrets.AZURE_TENANT_ID }}\""       >> backend.hcl
+        echo "client_id       = \"${{ secrets.AZURE_CLIENT_ID }}\""       >> backend.hcl
+      
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
-    
+      
     - name: Terraform
       run: |
         terraform init -backend-config=backend.hcl
         terraform apply -auto-approve
+      
       
     
