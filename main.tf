@@ -20,18 +20,22 @@ terraform {
       version = "~>3.0"
     }
   }
-  backend "azurerm" {
+}
+data "terraform_remote_state" "foo" {
+  backend = "azurerm"
+  config = {
     resource_group_name  = "CloudPortfolio"
     storage_account_name = "tfstateq1nmo"
     container_name       = "tfstate"
-    key                  = "prod.terraform.tfstate"
+    key                  = "Bue5ffNS4IjDJ9ehTIcnmTi6JmpSD9sLe7zTqyL+er1sLtyzhNR3xrCfxR9owNoGyPx2rnU179Um+AStzBCaYg=="
     use_oidc             = true
     subscription_id      = "sub_id"
-    client_id            = "client_id"
     tenant_id            = "tenant_id"
   }
-
 }
+
+
+
 
 provider "azurerm" {
   features{}
