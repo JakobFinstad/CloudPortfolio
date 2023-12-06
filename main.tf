@@ -4,7 +4,6 @@ resource "github_actions_secret" "sub_id" {
   repository = "CloudPortfolio"
   secret_name = "AZURE_SUBSCRIPTION_ID"
 }
-
 resource "github_actions_secret" "tenant_id" {
   repository = "CloudPortfolio"
   secret_name = "AZURE_TENANT_ID"
