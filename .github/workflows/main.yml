@@ -53,6 +53,6 @@ jobs:
     - name: Terraform
       run: |
         terraform init
-        terraform apply
+        terraform apply -auto-approve
       
     
