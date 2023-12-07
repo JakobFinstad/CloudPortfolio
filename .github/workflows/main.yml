@@ -53,7 +53,7 @@ jobs:
     
     - name: Terraform init
       run: |
-        terraform init
+        terraform init -var "tenant_id=${{secrets.AZURE_TENANT_ID}}" -var "client_id=${{secrets.AZURE_CLIENT_ID}}"
 
     - name: Terraform plan
       run: |
