@@ -41,14 +41,6 @@ resource "azurerm_subnet" "CloudPortfolio_subnet" {
   resource_group_name  = azurerm_resource_group.CloudPortfolio_rg.name
   virtual_network_name = azurerm_virtual_network.CloudPortfolio_vnet.name
   address_prefixes     = ["10.0.1.0/24"]
-  delegation {
-    name = "delegation"
-
-    service_delegation {
-      name    = "Microsoft.Web/serverFarms"
-      actions = ["Microsoft.Network/virtualNetworks/subnets/action", "Microsoft.Network/virtualNetworks/subnets/join/action"]
-    }
-  }
 }
 
 resource "azurerm_network_security_group" "CloudPortfolio_nsg" {
@@ -85,6 +77,10 @@ resource "azurerm_service_plan" "CloudPortfolio_asp" {
 
   os_type   = "Linux"   
   sku_name  = "B1"      
+}
+resource "azurerm_app_service_virtual_network_swift_connection" "network_connection" {
+  app_service_id = azurerm_app_service.CloudPortfolio_app.id
+  subnet_id      = azurerm_subnet.CloudPortfolio_subnet.id
 }
 
 resource "azurerm_app_service" "CloudPortfolio_app"{
