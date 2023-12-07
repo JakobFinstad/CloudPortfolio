@@ -131,5 +131,7 @@ resource "azurerm_app_service" "CloudPortfolio_app"{
 
   app_settings = {
     "SOME_KEY" = "some-value"
+    "WEBSITE_WEBDEPLOY_USE_SCM" = "true"
+    "SCM_DO_BUILD_DURING_DEPLOYMENT" = "true"
   }
 }
