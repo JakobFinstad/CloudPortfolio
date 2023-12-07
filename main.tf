@@ -41,6 +41,14 @@ resource "azurerm_subnet" "CloudPortfolio_subnet" {
   resource_group_name  = azurerm_resource_group.CloudPortfolio_rg.name
   virtual_network_name = azurerm_virtual_network.CloudPortfolio_vnet.name
   address_prefixes     = ["10.0.1.0/24"]
+  delegation {
+  name = "delegation"
+
+    service_delegation {
+      name    = "Microsoft.Web/serverFarms"
+      actions = ["Microsoft.Network/virtualNetworks/subnets/action", "Microsoft.Network/virtualNetworks/subnets/join/action"]
+    }
+  }
 }
 
 resource "azurerm_network_security_group" "CloudPortfolio_nsg" {
