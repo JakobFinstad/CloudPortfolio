@@ -1,23 +1,17 @@
 # main.tf
-
-variable tenant_id {}
-
-variable client_id {}
-
 terraform { 
     backend "azurerm" { 
         resource_group_name         = "CloudPortfolio" 
         storage_account_name        = "portfoliotfstate" 
         container_name              = "tfstate" 
-        key                         = "CloudPortfolio.tfstate"
+        key                         = "terraform.tfstate"
         use_oidc                    = true
-        client_id = var.client_id
-        tenant_id = var.tenant_id
     } 
 }
 
 provider "azurerm" {
   features{}
+  use_oidc = true
 }
 
 

@@ -6,8 +6,13 @@ on:
       - main
 
 permissions:
-      id-token: write
-      contents: read
+  id-token: write
+  contents: read
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+
 
 jobs:
   build:
@@ -51,17 +56,15 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
     
-    - name: Terraform init
-      run: |
-        terraform init -var "tenant_id=${{secrets.AZURE_TENANT_ID}}" -var "client_id=${{secrets.AZURE_CLIENT_ID}}"
+    - name: Terraform Init
+      run: terraform init
+    
+    - name: Terraform Plan
+      run: terraform plan 
 
-    - name: Terraform plan
-      run: |
-        terraform plan -var "tenant_id=${{secrets.AZURE_TENANT_ID}}" -var "client_id=${{secrets.AZURE_CLIENT_ID}}"
-      
-    - name: Terraform apply
-      run: |
-        terraform apply -auto-approve
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+    
         
       
     
