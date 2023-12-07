@@ -1,17 +1,5 @@
 # main.tf
 
-terraform { 
-    backend "azurerm" { 
-        resource_group_name         = "CloudPortfolio" 
-        storage_account_name        = "portfoliotfstate" 
-        container_name              = "tfstate" 
-        key                         = "CloudPortfolio.tfstate"
-        use_oidc                    = true
-        tenant_id                   = var.tenant_id
-        client_id                   = var.client_id
-    } 
-}
-
 variable tenant_id {
   type        = string
   default     = ""
@@ -22,6 +10,18 @@ variable client_id {
   type        = string
   default     = ""
   description = "description"
+}
+
+terraform { 
+    backend "azurerm" { 
+        resource_group_name         = "CloudPortfolio" 
+        storage_account_name        = "portfoliotfstate" 
+        container_name              = "tfstate" 
+        key                         = "CloudPortfolio.tfstate"
+        use_oidc                    = true
+        tenant_id                   = var.tenant_id
+        client_id                   = var.client_id
+    } 
 }
 
 provider "azurerm" {
