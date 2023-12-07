@@ -41,20 +41,27 @@ jobs:
         app-name: 'CloudPortAppService'
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
     
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
-
-    - name: Azure login and terraform
+    - name: Azure login
       uses: azure/login@v1
       with:
         client-id: ${{ secrets.AZURE_CLIENT_ID }}
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        run: |
-          terraform init
-          terraform plan
-          terraform apply -auto-approve
+        
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+    
+    - name: Terraform init
+      run: |
+        terraform init
+
+    - name: Terraform plan
+      run: |
+        terraform plan -var "tenant_id=${{secrets.AZURE_TENANT_ID}}" -var "client_id=${{secrets.AZURE_CLIENT_ID}}"
       
+    - name: Terraform apply
+      run: |
+        terraform apply -auto-approve
         
       
     
