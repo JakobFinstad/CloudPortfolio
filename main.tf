@@ -4,7 +4,7 @@ terraform {
         resource_group_name         = "CloudPortfolio" 
         storage_account_name        = "portfoliotfstate" 
         container_name              = "tfstate" 
-        key                         = "terraform.tfstate"
+        key                         = "CloudPortfolio.tfstate"
         use_oidc                    = true
     } 
 }
