@@ -1,7 +1,7 @@
 # main.tf
 terraform { 
     backend "azurerm" { 
-        resource_group_name         = "CloudPortfolio" 
+        resource_group_name         = "cloud-shell-storage-westeurope" 
         storage_account_name        = "portfoliotfstate" 
         container_name              = "tfstate" 
         key                         = "Rqf4t1ZkeygKDjemQmUxF7Ocvk9ROV6pB1D5gmTkHbiOvpGuau4Z1VevfiPfCsRb9SL9s/vkdGy1+AStf7FY5g=="
