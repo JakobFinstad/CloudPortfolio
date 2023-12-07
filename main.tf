@@ -25,8 +25,8 @@ resource "azurerm_resource_group" "CloudPortfolio_rg" {
 
 data "azurerm_storage_account" "portfoliotfstate" {
   name = "portfoliotfstate"
-  resource_group_name = azurerm_resource_group.cloud-shell-storage-westeurope_rg.name
-  location = azurerm_resource_group.cloud-shell-storage-westeurope_rg.location
+  resource_group_name = data.azurerm_resource_group.cloud-shell-storage-westeurope_rg.name
+  location = data.azurerm_resource_group.cloud-shell-storage-westeurope_rg.location
 }
 
 
