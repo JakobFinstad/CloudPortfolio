@@ -1,16 +1,8 @@
 # main.tf
 
-variable tenant_id {
-  type        = string
-  default     = ""
-  description = "description"
-}
+variable tenant_id {}
 
-variable client_id {
-  type        = string
-  default     = ""
-  description = "description"
-}
+variable client_id {}
 
 terraform { 
     backend "azurerm" { 
@@ -27,6 +19,7 @@ provider "azurerm" {
   client_id = var.client_id
   tenant_id = var.tenant_id
 }
+
 
 resource "azurerm_resource_group" "CloudPortfolio_rg" {
   name     = "CloudPortfolio"
