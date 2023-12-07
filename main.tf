@@ -14,7 +14,7 @@ provider "azurerm" {
   use_oidc = true
 }
 
-data "azurerm_resource_group" "cloud_shell" {
+data "azurerm_resource_group" "cloud-shell-storage-westeurope_rg" {
   name = "cloud-shell-storage-westeurope"
 }
 
@@ -25,7 +25,8 @@ resource "azurerm_resource_group" "CloudPortfolio_rg" {
 
 data "azurerm_storage_account" "portfoliotfstate" {
   name = "portfoliotfstate"
-  resource_group_name = azurerm_resource_group.cloud-shell.name
+  resource_group_name = azurerm_resource_group.cloud-shell-storage-westeurope_rg.name
+  location = azurerm_resource_group.cloud-shell-storage-westeurope_rg.location
 }
 
 
