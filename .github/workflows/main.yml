@@ -34,13 +34,13 @@ jobs:
         docker build . --file Dockerfile --tag ${{secrets.DOCKER_USERNAME}}/${{vars.DOCKER_IMAGE_NAME}}
         docker push ${{secrets.DOCKER_USERNAME}}/${{vars.DOCKER_IMAGE_NAME}}:latest
 
-  deploy:
+  resources:
     runs-on: ubuntu-latest
     needs: build
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-    
+
     - name: Azure login
       uses: azure/login@v1
       with:
@@ -59,6 +59,13 @@ jobs:
 
     - name: Terraform Apply
       run: terraform apply -auto-approve
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: resources
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
     - name: Deploy to Azure
       uses: azure/webapps-deploy@v2
