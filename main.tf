@@ -20,6 +20,15 @@ resource "azurerm_resource_group" "CloudPortfolio_rg" {
   location = "West Europe"
 }
 
+resource "azurerm_storage_account" "portfoliotfstate" {
+  name = "portfoliotfstate"
+  resource_group_name = azurerm_resource_group.CloudPortfolio_rg.name
+  location = azurerm_resource_group.CloudPortfolio_rg.location
+  account_tier = "Standard"
+  enable_https_traffic_only = true
+  account_replication_type = "LRS"
+}
+
 
 resource "azurerm_virtual_network" "CloudPortfolio_vnet" {
   name                = "CloudPortVNet"
