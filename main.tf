@@ -7,8 +7,23 @@ terraform {
         container_name              = "tfstate" 
         key                         = "CloudPortfolio.tfstate"
         use_oidc                    = true
+        tenant_id                   = var.tenant_id
+        client_id                   = var.client_id
     } 
 }
+
+variable tenant_id {
+  type        = string
+  default     = ""
+  description = "description"
+}
+
+variable client_id {
+  type        = string
+  default     = ""
+  description = "description"
+}
+
 provider "azurerm" {
   features{}
 }
