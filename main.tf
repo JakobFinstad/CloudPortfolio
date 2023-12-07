@@ -24,6 +24,8 @@ terraform {
 
 provider "azurerm" {
   features{}
+  client_id = var.client_id
+  tenant_id = var.tenant_id
 }
 
 resource "azurerm_resource_group" "CloudPortfolio_rg" {
