@@ -18,7 +18,7 @@ class TestApp(unittest.TestCase):
         # Ensure the Flask app is running and responds to requests
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(b'Hello World!  Im running inside a Docker container.', response.data)
+        self.assertEqual(b'Hello World! Im running inside a Docker container.', response.data)
 
 if __name__ == '__main__':
     unittest.main()
